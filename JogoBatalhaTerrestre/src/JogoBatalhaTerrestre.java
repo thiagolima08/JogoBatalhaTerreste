@@ -17,11 +17,16 @@ public class JogoBatalhaTerrestre {
 
 	public String atirar(int linha, int coluna)  throws Exception {
 		//validar linha e coluna fora da faixa
-		if(linha<0 || linha>10 && coluna<0 || coluna>10 ) 
-			throw new Exception("o numero da linha ou coluna esta fora da faixa permitida entre 0 e 10");
+		if(linha<0 || linha>10 && coluna<0 || coluna>10 ) {
+			throw new Exception("o número da linha ou coluna esta fora da faixa permitida entre 0 e 10");
 		return "tente novamente"; 
+		}
+
+		// Sendo linha e coluna válidas pode atirar
+		else{
+			matriz[linha][coluna] = '*'
+		}
 	}
-	
 	public int getAcertos() {
 		return acertos;
 	}
@@ -30,18 +35,39 @@ public class JogoBatalhaTerrestre {
 		return tiros;
 	}
 	
+	public int getTentativas(){
+		return tentativas;
+	}
+	
+	public void setAcertos() {
+		acertos = acertos + 1;
+		setTentativas() 
+	
+	}
+
+	public void setTentativas(){
+		tentativas = tentativas + 1;
+	}
+
+	public void setTiros(){
+		tiros = tiros + 1;
+	}
+
 	public boolean terminou() {
-		if (tentativas <= 20 && getAcertos() < 5) {
+		if (getTentativas() <= 20 && getAcertos() < 5) {
 			return false;
 		}
-		return true;
+		else if(getTentativas() > 20 || getAcertos() == 5){
+			return true;
+		}
+		
 	}
 	
 	public String getResultadoFinal() {
 		if(terminou()) { 
 			if (getAcertos()==5) {
 				return "Voce ganhou!!"; 
-				}
+			}
 			else
 				return "Voce perdeu!!";
 		}
