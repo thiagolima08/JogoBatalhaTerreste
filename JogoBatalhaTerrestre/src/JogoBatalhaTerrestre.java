@@ -45,7 +45,19 @@ public class JogoBatalhaTerrestre {
 				System.out.println("Alvo");
 				setAcertos(1);
 				setTiros(1);
+
+				// Depois que acerta substitui o 1 pelo número 9
+
+				matriz[linha][coluna]==9
+
+				// o número 9 significa que ele já acertou aquele alvo.
+
 				}
+			
+			else if (matriz[linha][coluna]==9){
+				System.out.println("Você já atirou nessa posição, tente outra")
+			}
+
 			else{
 				setTiros(1);
 				if (matriz[linha+1][coluna+1]==1|| matriz[linha-1][coluna-1]==1||matriz[linha+1][coluna-1]==1||matriz[linha-1][coluna+1]==1||matriz[linha][coluna+1]==1||matriz[linha][coluna-1]==1||matriz[linha+1][coluna]==1||matriz[linha-1][coluna]==1) {
