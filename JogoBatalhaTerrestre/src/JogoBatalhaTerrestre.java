@@ -1,3 +1,4 @@
+
 import java.util.Random;
 
 public class JogoBatalhaTerrestre {
@@ -11,83 +12,76 @@ public class JogoBatalhaTerrestre {
 		matriz = new int [10][10];
 		Random rand = new Random();
 		int n1 = rand.nextInt(10);
-		    int n2 = rand.nextInt(10);
-		    int n3 = rand.nextInt(10);
-		    int n4 = rand.nextInt(10);
-		    int n5 = rand.nextInt(10);
-		    int n6 = rand.nextInt(10);
-		    int n7 = rand.nextInt(10);
-		    int n8 = rand.nextInt(10);
-		    int n9 = rand.nextInt(10);
-		    int n10 = rand.nextInt(10);
-		
-		matriz[n1][n2] = 1;
-		
-		if(matriz[n3][n4] == 0) {
-			matriz[n3][n4] = 1;
-		}
-		else {
-			n3 = rand.nextInt(10);
-			n4 = rand.nextInt(10);
-			matriz[n3][n4] = 1;
-		}
-		
-		if(matriz[n5][n6] == 0) {
-			matriz[n5][n6] = 1;
-		}
-		else {
-			n5 = rand.nextInt(10);
-			n6 = rand.nextInt(10);
-			matriz[n5][n6] = 1;
-		}
-		
-		if(matriz[n7][n8] == 0) {
-			matriz[n7][n8] = 1;
-		}
-		else {
-			n7 = rand.nextInt(10);
-			n8 = rand.nextInt(10);
-			matriz[n7][n8] = 1;
-		}
-		
-		if(matriz[n9][n10] == 0) {
-			matriz[n9][n10] = 1;
-		}
-		else {
-			n9 = rand.nextInt(10);
-			n10 = rand.nextInt(10);
-			matriz[n9][n10] = 1;
-		}
-		
-		System.out.println("_____Alvos_____");
-		System.out.println("Linha: "+n1+" "+"Coluna: "+n2);
-		System.out.println("Linha: "+n3+" "+"Coluna: "+n4);
-		System.out.println("Linha: "+n5+" "+"Coluna: "+n6);
-		System.out.println("Linha: "+n7+" "+"Coluna: "+n8);
-		System.out.println("Linha: "+n9+" "+"Coluna: "+n10);
+	    int n2 = rand.nextInt(10);
+	   
+	    int cont = 0;
+	    while (cont<=4) {
+	    	if(matriz[n1][n2]==0) {
+	    		matriz[n1][n2]=1;
+	    	}else {
+	    		n1 = rand.nextInt(10);
+				n2 = rand.nextInt(10);
+				if(matriz[n1][n2]==0) {
+		    		matriz[n1][n2]=1;
+				}else {
+		    		n1 = rand.nextInt(10);
+					n2 = rand.nextInt(10);
+					matriz[n1][n2]=1;
+					}
+	    	}
+	    	cont++;
+	    }
 	}
 
 	public String atirar(int linha, int coluna)  throws Exception {
 		//validar linha e coluna fora da faixa
-		if(linha<0 || linha>10 || coluna<0 || coluna>10 ) {
+		if(linha<0 || linha>9 || coluna<0 || coluna>9 ) {
 			throw new Exception("o número da linha ou coluna esta fora da faixa permitida entre 0 e 9"); 
 		}
 
 		// Sendo linha e coluna válidas pode atirar
 		else{
 			if (matriz[linha][coluna]==1) {
-				System.out.println("Alvo");
+				System.out.println("Alvo\n");
 				setAcertos(1);
 				setTiros(1);
 				}
 			else{
 				setTiros(1);
-				if (matriz[linha+1][coluna+1]==1|| matriz[linha-1][coluna-1]==1||matriz[linha+1][coluna-1]==1||matriz[linha-1][coluna+1]==1||matriz[linha][coluna+1]==1||matriz[linha][coluna-1]==1||matriz[linha+1][coluna]==1||matriz[linha-1][coluna]==1) {
-					System.out.println("Próximo");
+				int soma=0;
+				if (linha==9||coluna==0) {
+					for(int i=linha-1;i<linha+1;i++) {
+						for(int j=coluna;j<coluna+2;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+								}
+							}
+						}
+				}else if(linha==0||coluna==9){
+					for(int i=linha;i<linha+2;i++) {
+						for(int j=coluna-1;j<coluna+1;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+							}
+						}
+					}
+				}else {
+					for(int i=linha-1;i<linha+2;i++) {
+						for(int j=coluna-1;j<coluna+2;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+								}
+							}
+						}
+				
 				}
+				
+				if(soma>=1) {
+					System.out.println("Próximo de acertar "+soma+" dos alvos\n");
+					}
 				else {
-				System.out.println("Distante");
-				}
+					System.out.println("Distante\n");
+					}
 			}				
 		}
 		return null;
@@ -120,8 +114,9 @@ public class JogoBatalhaTerrestre {
 	public String toString() {
 		for(int i=0; i<10;i++) {
 			for (int j=0; j<10;j++) {
-				System.out.println(matriz[i][j]+" ");
+				System.out.print(matriz[i][j]+"\t");
 				}
+			System.out.println();
 		}
 		return null;
 	}
@@ -138,5 +133,3 @@ public class JogoBatalhaTerrestre {
 			return "jogo ainda em execução";
 	}
 }
-
-
