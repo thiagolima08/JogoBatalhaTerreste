@@ -4,6 +4,7 @@ public class JogoBatalhaTerrestre {
 	private int tiros;
 	private int acertos;
 	private int [][] matriz;
+	private int num;
 	public JogoBatalhaTerrestre(){
 		tiros = 0;
 		acertos = 0;
