@@ -4,7 +4,6 @@ public class JogoBatalhaTerrestre {
 	private int tiros;
 	private int acertos;
 	private int [][] matriz;
-	
 	public JogoBatalhaTerrestre(){
 		tiros = 0;
 		acertos = 0;
@@ -45,18 +44,6 @@ public class JogoBatalhaTerrestre {
 				System.out.println("Alvo");
 				setAcertos(1);
 				setTiros(1);
-
-				// Depois que acerta substitui o 1 pelo número 9
-
-				matriz[linha][coluna]==9
-
-				// o número 9 significa que ele já acertou aquele alvo.
-
-				}
-			
-			else if (matriz[linha][coluna]==9){
-				System.out.println("Você já atirou nessa posição, tente outra")
-			}
 
 			else{
 				setTiros(1);
@@ -116,5 +103,3 @@ public class JogoBatalhaTerrestre {
 			return "jogo ainda em execução";
 	}
 }
-
-
