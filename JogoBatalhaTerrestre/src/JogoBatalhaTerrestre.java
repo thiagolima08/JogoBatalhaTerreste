@@ -1,4 +1,3 @@
-
 import java.util.Random;
 
 public class JogoBatalhaTerrestre {
@@ -49,23 +48,43 @@ public class JogoBatalhaTerrestre {
 			else{
 				setTiros(1);
 				int soma=0;
-				if (linha==9||coluna==0) {
+				//verifica se existem alvos vizinhos ao tiro
+				if (linha==9&&coluna==9) {
 					for(int i=linha-1;i<linha+1;i++) {
-						for(int j=coluna;j<coluna+2;j++) {
+						for(int j=coluna-1;j<coluna+1;j++) {
 							if (matriz[i][j]==1) {
 								soma++;							
 								}
 							}
 						}
-				}else if(linha==0||coluna==9){
+				}else if(linha==0&&coluna==0){
 					for(int i=linha;i<linha+2;i++) {
-						for(int j=coluna-1;j<coluna+1;j++) {
+						for(int j=coluna;j<coluna+2;j++) {
 							if (matriz[i][j]==1) {
 								soma++;							
 							}
 						}
 					}
-				}else {
+				}
+				else {
+					if (linha==9||coluna==0) {
+						for(int i=linha-1;i<linha+1;i++) {
+							for(int j=coluna;j<coluna+2;j++) {
+								if (matriz[i][j]==1) {
+									soma++;							
+									}
+								}
+							}
+					}else if(linha==0||coluna==9){
+						for(int i=linha;i<linha+2;i++) {
+							for(int j=coluna-1;j<coluna+1;j++) {
+								if (matriz[i][j]==1) {
+									soma++;							
+								}
+							}
+						}
+					}
+					else {
 					for(int i=linha-1;i<linha+2;i++) {
 						for(int j=coluna-1;j<coluna+2;j++) {
 							if (matriz[i][j]==1) {
@@ -73,9 +92,10 @@ public class JogoBatalhaTerrestre {
 								}
 							}
 						}
-				
+					}
 				}
 				
+				//quantidade de alvos próximos ao tiro
 				if(soma>=1) {
 					System.out.println("Próximo de acertar "+soma+" dos alvos\n");
 					}
@@ -86,6 +106,7 @@ public class JogoBatalhaTerrestre {
 		}
 		return null;
 	}
+				
 	public int getAcertos() {
 		return acertos;
 	}
