@@ -44,6 +44,19 @@ public class JogoBatalhaTerrestre {
 			throw new Exception("o número da linha ou coluna esta fora da faixa permitida entre 0 e 9"); 
 		}
 
+		else if(linha>0 || linha <9 || coluna > 0 || coluna < 9){
+
+			for(int i=0;, i<=num; i++){
+
+				if(array_linha[i]==linha && array_coluna[i]==coluna){
+					System.out.println("Já atiraram nessa posição, escoha outra.")
+
+				}
+
+			}
+		
+		} 
+
 		// Sendo linha e coluna válidas pode atirar
 		else{
 
@@ -56,16 +69,6 @@ public class JogoBatalhaTerrestre {
 			}
 
 			num++;
-			// Feita essa adição das posições em que já foram atiradas vamos agora verficar.
-
-			for(int i=0;, i<=num; i++){
-
-				if(array_linha[i]==linha && array_coluna[i]==coluna){
-					System.out.println("Já atiraram nessa posição, escoha outra.")
-
-				}
-
-			}
 
 			if (matriz[linha][coluna]==1) {
 				System.out.println("Alvo\n");
