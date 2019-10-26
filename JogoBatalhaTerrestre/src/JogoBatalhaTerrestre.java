@@ -8,6 +8,12 @@ public class JogoBatalhaTerrestre {
 	public JogoBatalhaTerrestre(){
 		tiros = 0;
 		acertos = 0;
+		num =0;
+
+		int[] array_linha = new int[20];
+		int[] array_coluna = new int[20];
+
+
 		matriz = new int [10][10];
 		Random rand = new Random();
 		int n1 = rand.nextInt(10);
@@ -41,6 +47,27 @@ public class JogoBatalhaTerrestre {
 
 		// Sendo linha e coluna válidas pode atirar
 		else{
+
+			// Armazenando os locais que já atiraram
+
+			while(num <= 20){
+				array_linha[num] = linha;
+				array_coluna[num] = coluna;
+				break
+			}
+
+			num++;
+			// Feita essa adição das posições em que já foram atiradas vamos agora verficar.
+
+			for(int i=0;, i<=num; i++){
+
+				if(array_linha[i]==linha && array_coluna[i]==coluna){
+					System.out.println("Já atiraram nessa posição, escoha outra.")
+
+				}
+
+			}
+
 			if (matriz[linha][coluna]==1) {
 				System.out.println("Alvo");
 				setAcertos(1);
