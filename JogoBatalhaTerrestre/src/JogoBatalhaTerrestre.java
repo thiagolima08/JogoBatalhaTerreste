@@ -4,17 +4,15 @@ public class JogoBatalhaTerrestre {
 	private int tiros;
 	private int acertos;
 	private int [][] matriz;
-	private int num;
+	private int[] array_linha; 
+	private int[] array_coluna;
+	
 	public JogoBatalhaTerrestre(){
 		tiros = 0;
 		acertos = 0;
-		num =0;
-
-		int[] array_linha = new int[20];
-		int[] array_coluna = new int[20];
-
-
 		matriz = new int [10][10];
+		array_linha = new int[20];
+		array_coluna = new int[20];
 		Random rand = new Random();
 		int n1 = rand.nextInt(10);
 	    int n2 = rand.nextInt(10);
@@ -46,31 +44,24 @@ public class JogoBatalhaTerrestre {
 
 		// Sendo linha e coluna válidas pode atirar
 		else{
-
-			// Armazenando os locais que já atiraram
-
-			while(num <= 20){
-				array_linha[num] = linha;
-				array_coluna[num] = coluna;
-				break
-			}
-
-			num++;
-			// Feita essa adição das posições em que já foram atiradas vamos agora verficar.
-
-			for(int i=0;, i<=num; i++){
-
-				if(array_linha[i]==linha && array_coluna[i]==coluna){
-					System.out.println("Já atiraram nessa posição, escoha outra.")
-
-				}
-
-			}
-
 			if (matriz[linha][coluna]==1) {
 				System.out.println("Alvo\n");
 				setAcertos(1);
 				setTiros(1);
+				if(!(array_linha==null)){
+					for(int i=0; i<=getTiros(); i++){
+						if(array_linha[i]==linha && array_coluna[i]==coluna){
+							setAcertos(-1);
+							throw new Exception("Já acertou essa posição, escolha outra.");							
+							}
+					}
+				}
+
+				for(int i=getTiros(); i<=getTiros(); i++){
+					array_linha[i]=linha;
+					array_coluna[i]=coluna;
+					}
+			}
 
 			else{
 				setTiros(1);
@@ -129,6 +120,19 @@ public class JogoBatalhaTerrestre {
 				else {
 					System.out.println("Distante\n");
 					}
+				// Armazenando os locais que já atiraram
+				if(!(array_linha==null)){
+					for(int i=0; i<=getTiros(); i++){
+						if(array_linha[i]==linha && array_coluna[i]==coluna){
+							throw new Exception("Já atirou nessa posição, escolha outra.");
+							}
+					}
+				}
+
+				for(int i=getTiros(); i<=getTiros(); i++){
+					array_linha[i]=linha;
+					array_coluna[i]=coluna;
+					}
 			}				
 		}
 		return null;
@@ -180,3 +184,4 @@ public class JogoBatalhaTerrestre {
 		else
 			return "jogo ainda em execução";
 	}
+}
