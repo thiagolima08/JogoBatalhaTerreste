@@ -81,6 +81,7 @@ public class JogoBatalhaTerrestre {
 				String linha;
 				linha = "Alvo";
 				arq.write(linha + "\n");
+				arq.readline();
 				arq.close();
 
 			else{
@@ -142,6 +143,7 @@ public class JogoBatalhaTerrestre {
 					String linha1;
 					linha1 = "Próximo de acertar o alvo";
 					arq.write(linha1 + "\n");
+					arq.readline();
 					arq.close();
 					
 					
@@ -154,6 +156,7 @@ public class JogoBatalhaTerrestre {
 					String linha2;
 					linha = "Distante";
 					arq.write(linha2 + "\n");
+					arq.readline();
 					arq.close();
 					
 					}
