@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.io.FileWriter;
 
 public class JogoBatalhaTerrestre {
 	private int tiros;
@@ -75,6 +76,13 @@ public class JogoBatalhaTerrestre {
 				setAcertos(1);
 				setTiros(1);
 
+				// Salvando em arquivo texto
+				FileWriter arq = new FileWriter(new File("result.txt"));
+				String linha;
+				linha = "Alvo";
+				arq.write(linha + "\n");
+				arq.close();
+
 			else{
 				setTiros(1);
 				int soma=0;
@@ -128,9 +136,26 @@ public class JogoBatalhaTerrestre {
 				//quantidade de alvos próximos ao tiro
 				if(soma>=1) {
 					System.out.println("Próximo de acertar "+soma+" dos alvos\n");
+					// Salvando em arquivo texto
+					
+					FileWriter arq = new FileWriter(new File("result.txt"));
+					String linha1;
+					linha1 = "Próximo de acertar o alvo";
+					arq.write(linha1 + "\n");
+					arq.close();
+					
+					
 					}
 				else {
 					System.out.println("Distante\n");
+					//Salvando em arquivo texto
+					
+					FileWriter arq = new FileWriter(new File("result.txt"));
+					String linha2;
+					linha = "Distante";
+					arq.write(linha2 + "\n");
+					arq.close();
+					
 					}
 			}				
 		}
