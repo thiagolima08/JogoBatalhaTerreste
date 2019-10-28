@@ -1,4 +1,7 @@
 import java.util.Random;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
 
 public class JogoBatalhaTerrestre {
 	private int tiros;
@@ -38,18 +41,33 @@ public class JogoBatalhaTerrestre {
 
 	public String atirar(int linha, int coluna)  throws Exception {
 		//validar linha e coluna fora da faixa
+		
 		if(linha<0 || linha>9 || coluna<0 || coluna>9 ) {
 			throw new Exception("o número da linha ou coluna esta fora da faixa permitida entre 0 e 9"); 
 		}
 
 		// Sendo linha e coluna válidas pode atirar
+		
 		else{
+			FileWriter arq = new FileWriter("result.txt", true);
+			BufferedWriter conexao = new BufferedWriter(arq);
+			
 			if (matriz[linha][coluna]==1) {
 				System.out.println("Alvo\n");
 				setAcertos(1);
 				setTiros(1);
+				
+				// Salvando em arquivo texto
+				String linha0;
+				linha0 = "Alvo";
+				conexao.write(linha+" "+coluna+" "+linha0);
+				conexao.newLine();
+				conexao.close();
+				
+				
+				// verifica se a linha e a coluna já foi acertada  
 				if(!(array_linha==null)){
-					for(int i=0; i<=getTiros(); i++){
+					for(int i=1; i<getTiros(); i++){
 						if(array_linha[i]==linha && array_coluna[i]==coluna){
 							setAcertos(-1);
 							throw new Exception("Já acertou essa posição, escolha outra.");							
@@ -66,7 +84,9 @@ public class JogoBatalhaTerrestre {
 			else{
 				setTiros(1);
 				int soma=0;
+				
 				//verifica se existem alvos vizinhos ao tiro
+				
 				if (linha==9&&coluna==9) {
 					for(int i=linha-1;i<linha+1;i++) {
 						for(int j=coluna-1;j<coluna+1;j++) {
@@ -114,15 +134,34 @@ public class JogoBatalhaTerrestre {
 				}
 				
 				//quantidade de alvos próximos ao tiro
+				
 				if(soma>=1) {
 					System.out.println("Próximo de acertar "+soma+" dos alvos\n");
+					
+					// Salvando em arquivo texto
+
+					String linha1;
+					linha1 = "Próximo de acertar o alvo";
+					conexao.write(linha+" "+coluna+" "+linha1);
+					conexao.newLine();
+					conexao.close();
 					}
 				else {
 					System.out.println("Distante\n");
+					
+					//Salvando em arquivo texto
+					
+					String linha2;
+					linha2 = "Distante";
+					conexao.write(linha+" "+coluna+" "+linha2);
+					conexao.newLine();
+					conexao.close();
 					}
+				
 				// Armazenando os locais que já atiraram
+				
 				if(!(array_linha==null)){
-					for(int i=0; i<=getTiros(); i++){
+					for(int i=1; i<getTiros(); i++){
 						if(array_linha[i]==linha && array_coluna[i]==coluna){
 							throw new Exception("Já atirou nessa posição, escolha outra.");
 							}
