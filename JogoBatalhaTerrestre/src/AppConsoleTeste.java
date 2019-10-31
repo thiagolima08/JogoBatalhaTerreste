@@ -5,13 +5,17 @@ public class AppConsoleTeste {
 	public static void main(String[] args) {
 		int linha;
 		int coluna;
+		int t_linha;
+		int t_coluna;
 		Scanner teclado = new Scanner(System.in);
 		JogoBatalhaTerrestre jogo = new JogoBatalhaTerrestre();
 		do{
 			System.out.println("\nDigite o número da linha: ");
-			linha = teclado.nextInt();
+			t_linha = teclado.nextInt();
 			System.out.println("\nDigite o número da coluna: ");
-			coluna = teclado.nextInt();	
+			t_coluna = teclado.nextInt();	
+			linha = t_linha -1;
+			coluna - t_coluna -1;
 			System.out.println();
 			try {
 				jogo.atirar(linha,coluna);
