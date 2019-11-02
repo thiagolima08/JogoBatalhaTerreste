@@ -19,16 +19,13 @@ public class JogoBatalhaTerrestre {
 		Random rand = new Random();
 			   
 	    int cont = 0;
-	    while (cont<=4) {
+	    while (cont<5) {
 	    	int n1 = rand.nextInt(10);
 		    int n2 = rand.nextInt(10);
 	    	if(matriz[n1][n2]==0) {
 	    		matriz[n1][n2]=1;
 	    		cont++;
 	    	}
-	    	else {
-	    		cont--;
-				}
 	    }
 	}
 
@@ -64,7 +61,7 @@ public class JogoBatalhaTerrestre {
 					conexao.write(linha+" "+coluna+" "+"Alvo");
 					conexao.newLine();
 					conexao.close();
-					System.out.println("Alvo\n");
+		
 				return "Alvo\n";
 			}
 		else{
@@ -75,14 +72,14 @@ public class JogoBatalhaTerrestre {
 					conexao.write(linha+" "+coluna+" "+"Próximo");
 					conexao.newLine();
 					conexao.close();
-					System.out.println("Próximo\n");
+					
 				return "Próximo\n"; 
 			}else {
 				//Salvando em arquivo texto
 					conexao.write(linha+" "+coluna+" "+"Distante");
 					conexao.newLine();
 					conexao.close();
-					System.out.println("Distante\n");
+					
 				return "Distante\n";
 			}
 		}			
@@ -116,51 +113,92 @@ public class JogoBatalhaTerrestre {
 	
 	private boolean temAlvoPerto(int linha, int coluna) {
 		//verifica se existem alvos vizinhos ao tiro
-		int soma =0;
-		if (linha==9&&coluna==9) {
-			for(int i=linha-1;i<linha+1;i++) {
-				for(int j=coluna-1;j<coluna+1;j++) {
-					if (matriz[i][j]==1) {
-						soma++;							
+		int soma = 0;
+		if (linha==9||coluna==9||linha==0||coluna==0) {
+				
+				if (linha==9&&!(coluna==9||coluna==0)) {
+					for(int i=linha-1;i<linha+1;i++) {
+						for(int j=coluna-1;j<coluna+2;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+								}
+							}
 						}
-					}
 				}
-		}else if(linha==0&&coluna==0){
-			for(int i=linha;i<linha+2;i++) {
-				for(int j=coluna;j<coluna+2;j++) {
-					if (matriz[i][j]==1) {
-						soma++;							
-					}
-				}
-			}
-		}
-		else {
-			if (linha==9||coluna==0) {
-				for(int i=linha-1;i<linha+1;i++) {
-					for(int j=coluna;j<coluna+2;j++) {
-						if (matriz[i][j]==1) {
-							soma++;							
+				if(linha==0&&!(coluna==9||coluna==0)){
+					for(int i=linha;i<linha+2;i++) {
+						for(int j=coluna-1;j<coluna+2;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
 							}
 						}
 					}
-			}else if(linha==0||coluna==9){
-				for(int i=linha;i<linha+2;i++) {
-					for(int j=coluna-1;j<coluna+1;j++) {
-						if (matriz[i][j]==1) {
-							soma++;							
+				}
+				if (coluna==9&&!(linha==9||linha==0)) {
+						for(int i=linha-1;i<linha+2;i++) {
+							for(int j=coluna-1;j<coluna+1;j++) {
+								if (matriz[i][j]==1) {
+									soma++;							
+									}
+								}
+							}
+					}
+				if(coluna==0&&!(linha==0||linha==9)){
+						for(int i=linha-1;i<linha+2;i++) {
+							for(int j=coluna;j<coluna+2;j++) {
+								if (matriz[i][j]==1) {
+									soma++;							
+								}
+							}
+						}
+					}
+				if (linha==9&&coluna==9) {
+					for(int i=linha-1;i<linha+1;i++) {
+						for(int j=coluna-1;j<coluna+1;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+								}
+							}
+						}
+				}
+				if(linha==0&&coluna==0){
+					for(int i=linha;i<linha+2;i++) {
+						for(int j=coluna;j<coluna+2;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+							}
+						}
+					}
+				}
+				if (linha==0&&coluna==9) {
+					for(int i=linha;i<linha+1;i++) {
+						for(int j=coluna-1;j<coluna+1;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+								}
+							}
+						}
+				}
+				if(linha==9&&coluna==0){
+					for(int i=linha-1;i<linha+1;i++) {
+						for(int j=coluna;j<coluna+2;j++) {
+							if (matriz[i][j]==1) {
+								soma++;							
+							}
 						}
 					}
 				}
 			}
-			else {
+		
+		else {
 			for(int i=linha-1;i<linha+2;i++) {
 				for(int j=coluna-1;j<coluna+2;j++) {
 					if (matriz[i][j]==1) {
 						soma++;							
-						}
 					}
 				}
 			}
+			
 		}
 		if(soma>=1) {
 			return true;
